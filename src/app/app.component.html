@@ -1,4 +1,4 @@
-<div class="curtain">
+<!-- <div class="curtain">
   <div class="curtain__wrapper">
     <input type="checkbox" checked />
 
@@ -8,13 +8,17 @@
         <div class="halfStyle2" data-content="&">&</div>
       </h1>
     </div>
-    <!-- curtain__panel -->
 
-    <div class="curtain__content">
-      EOEOEO
-      <!-- <input type="file" (change)="handleFileInput($event.target.files)" />
-      <button (click)="uploadFile()" [disabled]="!fileToUpload">Upload</button> -->
-    </div>
+    <div class="curtain__content"> -->
+      <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+        <textarea rows="10" cols="60" name="wishes" ngModel></textarea>
+        <input type="file" name="photos" multiple (change)="onFileChange($event)">
+        <button type="submit">Upload</button>
+      </form>
+
+      
+      
+    <!-- </div>
 
     <div class="curtain__panel curtain__panel--right">
       <h1 style="display: flex; align-items: center; justify-content: center">
@@ -22,8 +26,5 @@
         Marcin
       </h1>
     </div>
-    <!-- curtain__panel -->
   </div>
-  <!-- curtain__wrapper -->
-</div>
-<!-- curtain -->
+</div> -->
