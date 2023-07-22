@@ -1,0 +1,12 @@
+.footer-section {
+  background-color: #4e4e4e;
+  color: white;
+  text-align: center;
+  height: fit-content;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.footer-section h2 {
+  margin-top: 25px;
+}

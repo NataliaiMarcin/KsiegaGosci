@@ -26,9 +26,13 @@ export class AppComponent {
 
     formData.append('wishes', f.value.wishes);
 
-      this.http.post('https://tasty-overshirt-jay.cyclic.app/api/upload', formData).subscribe(response => {
+      this.http.post('http://localhost:3000/api/upload', formData).subscribe(response => {
         console.log(response);
-      });;
+      });
+
+      // this.http.post('https://tasty-overshirt-jay.cyclic.app/api/upload', formData).subscribe(response => {
+      //   console.log(response);
+      // });
     }
   }
 }
