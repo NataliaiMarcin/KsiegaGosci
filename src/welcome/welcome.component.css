@@ -6,7 +6,8 @@
 
 /* ---------- WEDDING PICTURE SECTION ---------- */
 .wedding-pic-container {
-  background-image: url(../assets/images/background-image.jpeg);
+  /* background-image: url(../assets/images/background-image.jpeg); */
+  background-image: url(../assets/images/background-image_flipped.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -32,7 +33,7 @@
 }
 
 .imagerow{
-  background-color: #cbe8eb !important;
+  background-color: #ffeed9 !important;
 }
 
 .wedding-pic-container > .wedding-pic-content {
@@ -60,7 +61,8 @@
 /* Phone settings */
 @media only screen and (max-width: 768px) {
   .wedding-pic-container {
-    background-image: url(../assets/images/background-image-phone.jpeg);
+    /* background-image: url(../assets/images/background-image-phone.jpeg); */
+    background-image: url(../assets/images/background-image-phone_flipped.jpeg);
     background-position: 50% 0%;
   }
 
@@ -73,18 +75,22 @@
     font-family: "scriptina", Arial, Helvetica, sans-serif !important;
     font-size: 6vw;
   }
+
+  table td{
+    font-size: smaller !important;
+  }
 }
 
 /* ---------- WELCOME SECTION ---------- */
 .welcome-section {
-  background-color: #cbe8eb;
+  background-color: #ffeed9;
   text-align: center;
   height: 100%;
   padding: 3%;
 }
 
 .welcome-section-2 {
-  background-color: #cbe8eb;
+  background-color: #ffeed9;
   text-align: center;
   height: 100%;
   padding: 1% 3% 1% 3%;
@@ -92,7 +98,7 @@
 
 .welcome-section-3 {
 
-  background-color: #cbe8eb;
+  background-color: #ffeed9;
   text-align: center;
   /* height: 100%; */
   padding: 1% 3% 1% 3%;
@@ -126,7 +132,7 @@
 }
 
 .photo-gallery-pictures {
-  background-color: #cbe8eb;
+  background-color: #ffeed9;
   display: flex;
   flex-wrap: wrap;
   padding: 50px 4px;
