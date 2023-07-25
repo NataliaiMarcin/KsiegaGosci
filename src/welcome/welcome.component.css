@@ -3,11 +3,18 @@
   src: url(../assets/Fonts/scriptina/SCRIPTIN.ttf) format("TrueType");
 }
 
-
+@keyframes cycle {
+  0% { opacity: 0; }
+  25% { opacity: 1; z-index: 1; }
+  50% { opacity: 0; z-index: 0; }
+  75% { opacity: 0; z-index: 0; }
+  100% { opacity: 1; z-index: 1; }
+}
 /* ---------- WEDDING PICTURE SECTION ---------- */
 .wedding-pic-container {
   /* background-image: url(../assets/images/background-image.jpeg); */
-  background-image: url(../assets/images/background-image_flipped.jpeg);
+  background-image: url(../assets/images/background-image_flipped.jpeg), url(../assets/images/background-image.jpeg);
+  transition: transform 10000ms ease-out 0s, opacity 1000ms ease 0s; opacity: 1; transform: scale(1); z-index: 2;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -83,6 +90,7 @@
 
 /* ---------- WELCOME SECTION ---------- */
 .welcome-section {
+  font-family: "Roboto Condensed";
   background-color: #ffeed9;
   text-align: center;
   height: 100%;
@@ -90,6 +98,7 @@
 }
 
 .welcome-section-2 {
+  font-family: "Roboto Condensed";
   background-color: #ffeed9;
   text-align: center;
   height: 100%;
@@ -97,7 +106,7 @@
 }
 
 .welcome-section-3 {
-
+  font-family: "Roboto Condensed";
   background-color: #ffeed9;
   text-align: center;
   /* height: 100%; */
@@ -164,4 +173,8 @@ table {
 table td {
   padding: 10px 20px;
   font-size:x-large;
+}
+
+.app-popup{
+  display: none;
 }

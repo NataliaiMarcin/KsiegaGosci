@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { PopupService } from './Services/popup.service';
+import { LoaderService } from './Services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,9 @@ export class AppComponent {
   selectedFiles: FileList | undefined;
   wishes: string | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private loadingService: LoaderService, public popupService: PopupService) {
+    this.loadingService.setLoading(true);
+  }
 
   onFileChange(event:any): void {
     this.selectedFiles = event.target.files;
@@ -35,4 +39,5 @@ export class AppComponent {
       // });
     }
   }
+
 }

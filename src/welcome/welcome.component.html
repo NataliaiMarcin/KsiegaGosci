@@ -2,6 +2,7 @@
   <div class="wedding-pic-content">
     <h1>Natalia & Marcin</h1>
     <h2>02.09.2023 r.</h2>
+    <button (click)="this.popupService.open('modal-1')">Open Modal 1</button>
   </div>
 </div>
 <div class="welcome-section">
@@ -84,3 +85,7 @@
   </div>
 </div>
 </div>
+<app-popup id="modal-1" class="app-popup">
+  <h1>A custom modal popup</h1>
+  <button (click)="this.popupService.close();">Close</button>
+</app-popup>
