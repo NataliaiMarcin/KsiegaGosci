@@ -1,9 +1,13 @@
 <div class="wedding-pic-container">
-  <div class="wedding-pic-content">
-    <h1>Natalia & Marcin</h1>
-    <h2>02.09.2023 r.</h2>
-    <button (click)="this.popupService.open('modal-1')">Open Modal 1</button>
-  </div>
+	<div id="demo-1" data-zs-src='["../assets/images/background-image-phone_flipped.jpeg", "../assets/images/background-image.jpeg", "../assets/photo-gallery/IMG_0002.JPG"]' data-zs-overlay="false" data-zs-bullets="false">
+		<div class="demo-inner-content">
+        <div class="wedding-pic-content">
+          <h1 class="h1">Natalia & Marcin</h1>
+          <h2 class="h2">02.09.2023 r.</h2>
+          <button (click)="this.popupService.open('modal-1')">Open Modal 1</button>
+        </div>  
+      </div>
+	</div>
 </div>
 <div class="welcome-section">
   <h2>Witajcie!</h2>
@@ -31,6 +35,7 @@
   [flexImageSize]="7"
   [maxRowsPerPage]="100"
   [includeViewer]="true"
+  [lazyLoadGalleryImages]="false"
 ></gallery>
 </div>
 <div class="welcome-section-2">

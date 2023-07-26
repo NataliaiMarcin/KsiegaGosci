@@ -30,9 +30,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/zoomslider.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./src/assets/modernizr-2.6.2.min.js",
+              "./src/assets/jquery.zoomslider.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,9 +98,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/zoomslider.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./src/assets/modernizr-2.6.2.min.js",
+              "./src/assets/jquery.zoomslider.js"
+            ]
           }
         },
         "deploy": {
