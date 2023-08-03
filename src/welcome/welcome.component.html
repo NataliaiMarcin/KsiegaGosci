@@ -94,7 +94,19 @@
   </div>
 </div>
 </div>
-<app-popup id="modal-1" class="app-popup">
+<app-popup id="modal-1" class="app-popup" [onClick]="this.close">
+  <h1>A tall modal popup</h1>
+  <p>Close with the button below or by clicking the background.</p>
+  <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+    <textarea rows="10" cols="60" name="wishes" ngModel></textarea>
+    <input type="file" name="photos" multiple (change)="onFileChange($event)">
+    <div style="display: flex;">
+      <photo-preview *ngFor='let preview of previews' [preview]="preview"></photo-preview>
+    </div>
+    <button type="submit">Upload</button>
+  </form>
+</app-popup>
+<!-- <app-popup id="modal-1" class="app-popup">
   <h1>A custom modal popup</h1>
   <button (click)="this.popupService.close();">Close</button>
-</app-popup>
+</app-popup> -->

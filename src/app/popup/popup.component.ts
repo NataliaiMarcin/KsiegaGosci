@@ -10,6 +10,7 @@ export class PopupComponent implements OnInit, OnDestroy {
   @Input() id?: string;
   isOpen = false;
   private element: any;
+  @Input() onClick: any;
 
   constructor(private popupService: PopupService, private el: ElementRef) {
       this.element = el.nativeElement;

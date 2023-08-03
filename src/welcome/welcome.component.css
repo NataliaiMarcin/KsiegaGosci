@@ -9,7 +9,6 @@
   background-position:center center
 }
 .parallax-background {
-  width:100%;
   background-attachment:fixed;
   background-repeat:repeat-y;
   -webkit-background-size:cover;

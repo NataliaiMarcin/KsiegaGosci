@@ -12,6 +12,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
 import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 import { WelcomeModule } from 'src/welcome/welcome.module';
 import { PopupComponent } from './popup/popup.component';
+import { PhotoPreviewComponent } from './photo-preview/photo-preview.component';
 
 @NgModule({
   declarations: [
