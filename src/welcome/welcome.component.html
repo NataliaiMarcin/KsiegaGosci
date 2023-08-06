@@ -94,19 +94,34 @@
   </div>
 </div>
 </div>
-<app-popup id="modal-1" class="app-popup" [onClick]="this.close">
-  <h1>A tall modal popup</h1>
-  <p>Close with the button below or by clicking the background.</p>
-  <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
-    <textarea rows="10" cols="60" name="wishes" ngModel></textarea>
-    <input type="file" name="photos" multiple (change)="onFileChange($event)">
+
+<app-popup id="modal-1" class="app-popup" [onClick]="this.close" style="width: 50%;">
+  <div style="display: flex; justify-content: center; flex-direction: column;">
+  <h1 style="width: 100%; display: flex; justify-content: center;">A tall modal popup</h1>
+  <p style="width: 100%; display: flex; justify-content: center;" >Close with the button below or by clicking the background.</p>
+  <form  style="width: 100%" #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+    <textarea style="width: 100%" rows="10" cols="60" name="wishes" ngModel></textarea>
+
+    <div style="position: relative;   display: flex; 
+    justify-content: center;
+    align-items: center;">
+      <a class="bt more-bt" href="javascript:void(0)">
+        <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
+        <p>Prześlij</p>
+      </a>
+    </div>
+
+
+    <input #uploadFile type="file" name="photos" multiple (change)="onFileChange($event)" style="display: none;">
     <div style="display: flex;">
       <photo-preview *ngFor='let preview of previews' [preview]="preview"></photo-preview>
     </div>
     <button type="submit">Upload</button>
   </form>
+</div>
 </app-popup>
 <!-- <app-popup id="modal-1" class="app-popup">
   <h1>A custom modal popup</h1>
   <button (click)="this.popupService.close();">Close</button>
 </app-popup> -->
+

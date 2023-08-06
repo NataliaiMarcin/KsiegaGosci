@@ -7,7 +7,8 @@
     /* modal container fixed across whole screen */
     position: fixed;
     inset: 0;
-
+    display: flex;
+    justify-content: center;
 
     /* z-index must be higher than everything else on the page */
     z-index: 10000;
@@ -25,6 +26,7 @@
     background: #fff;
     border-radius: 25px;
     position: relative;
+    width: 50%;
 }
   body.jw-modal-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
