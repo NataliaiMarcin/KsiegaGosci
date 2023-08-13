@@ -280,7 +280,6 @@ table td {
 
 
 .bt {
-  width: 100px;
   cursor: pointer;
   position: relative;
   font-family: "Roboto";
@@ -294,7 +293,7 @@ table td {
   outline: none;
   text-decoration: none;
   text-align: center;
-
+  padding: 0px 5px 0px 5px;
 }
 
 .more-bt {

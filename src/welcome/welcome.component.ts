@@ -12,10 +12,10 @@ declare var $:any;
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
-
   selectedFiles: FileList | undefined;
   wishes: string | undefined;
   previews: string[] = [];
+  @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 
   constructor(private titleService: Title, public popupService: PopupService, private http: HttpClient) {
     this.titleService.setTitle('Ślub Natali i Marcina');
@@ -60,6 +60,10 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         console.log(response);
       });;
     }
+  }
+
+  eoeoeo(object: any){
+    this.uploadFile?.nativeElement.click();
   }
 
   close(){

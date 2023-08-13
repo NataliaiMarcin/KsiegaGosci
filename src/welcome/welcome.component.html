@@ -105,14 +105,15 @@
     <div style="position: relative;   display: flex; 
     justify-content: center;
     align-items: center;">
-      <a class="bt more-bt" href="javascript:void(0)">
+        <input #uploadFile type="file" name="photos" multiple (change)="onFileChange($event)" style="display: none;">
+      <a class="bt more-bt" (click)="this.eoeoeo(uploadFile)">
         <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
-        <p>Prześlij</p>
+        <p>Wybierz zdjęcia</p>
       </a>
     </div>
 
 
-    <input #uploadFile type="file" name="photos" multiple (change)="onFileChange($event)" style="display: none;">
+
     <div style="display: flex;">
       <photo-preview *ngFor='let preview of previews' [preview]="preview"></photo-preview>
     </div>
