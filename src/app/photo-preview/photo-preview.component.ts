@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Preview } from 'src/welcome/welcome.component';
 
 @Component({
   selector: 'photo-preview',
@@ -7,6 +8,13 @@ import { Component, Input } from '@angular/core';
 })
 export class PhotoPreviewComponent {
   @Input()
-  preview: any;
+  content!: Preview;
+
+  @Output()
+  delete = new EventEmitter<string>();
+
+  inc() {
+    this.delete.emit(this.content?.id);
+  }
 
 }

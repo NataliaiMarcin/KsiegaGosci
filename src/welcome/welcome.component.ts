@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerR
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { PopupService } from 'src/app/Services/popup.service';
+import * as uuid from 'uuid';
 
 declare let ZoomSlider:any;
 declare var $:any;
@@ -13,8 +14,8 @@ declare var $:any;
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
   selectedFiles: FileList | undefined;
-  wishes: string | undefined;
-  previews: string[] = [];
+  wishes!: string;
+  previews: Preview[] = [];
   @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 
   constructor(private titleService: Title, public popupService: PopupService, private http: HttpClient) {
@@ -39,7 +40,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
         reader.onload = (e: any) => {
           console.log(e.target.result);
-          this.previews.push(e.target.result);
+          this.previews.push({content: e.target.result, id: uuid.v4()});
         };
 
         reader.readAsDataURL(this.selectedFiles[i]);
@@ -47,14 +48,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  submitForm(f: NgForm): void {
+  submitForm(): void {
     const formData = new FormData();
     if(this.selectedFiles){
       for (let i = 0; i < this.selectedFiles.length; i++) {
         formData.append('photos', this.selectedFiles[i]);
       }
 
-    formData.append('wishes', f.value.wishes);
+    formData.append('wishes', this.wishes);
 
       this.http.post('https://tasty-overshirt-jay.cyclic.app/api/upload', formData).subscribe(response => {
         console.log(response);
@@ -69,4 +70,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   close(){
     this.popupService.close();
   }
+
+  deletePreview(id: String){
+    this.previews = this.previews.filter((el: Preview) => el.id != id);
+  }
+}
+
+export interface Preview{
+  content: string;
+  id: string;
 }

@@ -19,6 +19,7 @@
 
     /* enables scrolling for tall modals */
     overflow: auto;
+    
 }
 
 .jw-modal-body {
@@ -27,11 +28,20 @@
     border-radius: 25px;
     position: relative;
     width: 50%;
+    height: fit-content;
+    min-height: 90vh;
 }
   body.jw-modal-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
     overflow: hidden;
   }
+
+  /* Phone settings */
+@media only screen and (max-width: 768px) {
+  .jw-modal-body {
+    width: 90%;
+  }
+}
 
   .close {
     right: 10px;

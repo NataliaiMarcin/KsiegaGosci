@@ -18,7 +18,7 @@ import { PhotoPreviewComponent } from "src/app/photo-preview/photo-preview.compo
     Angular2ImageGalleryModule,
     HammerModule,
     CommonModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [HttpClient, provideAnimations()],
   exports:[WelcomeComponent],
