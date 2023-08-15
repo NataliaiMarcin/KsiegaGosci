@@ -31,7 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/zoomslider.css"
+              "src/assets/zoomslider.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
@@ -99,7 +100,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/zoomslider.css"
+              "src/assets/zoomslider.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
