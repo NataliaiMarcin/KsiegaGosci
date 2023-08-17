@@ -1,21 +1,26 @@
 <div class="wedding-pic-container">
 
 	<div id="demo-1" data-zs-src='["assets/images/background-image-phone_flipped.jpeg", "assets/images/background-image.jpeg", "assets/photo-gallery/IMG_0002.JPG"]' data-zs-overlay="false" data-zs-bullets="false">
-		<div class="demo-inner-content">
+		<div class="demo-inner-content" style="width: 100%; height: 100vh;">
         <div class="wedding-pic-content">
           <h1 class="h1">Natalia & Marcin</h1>
           <h2 class="h2">02.09.2023 r.</h2>
-          <button (click)="this.popupService.open('modal-1')">Open Modal 1</button>
-        </div>  
+          <div style="width: 100%; display: flex; justify-content: center;">
+          <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+        </div>
       </div>
 	</div>
 
 </div>
 
-<div class="welcome-section parallax-background section-divider-bottom-2 padding-divider-top">
+<!-- <div div class="welcome-section parallax-background">
   <h2 style='font-family: "scriptina", Arial, Helvetica, sans-serif !important; font-size: 7vw; color: white;'>Witajcie!</h2>
   </div>
-  <div class="section-divider-top-1 off-section"></div>
   <p>
     👋 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
     ut labore et dolore magna aliqua. 🤷‍♂️🤷‍♀️ ... quis nostrud exercitation ullamco! 🧠
@@ -29,8 +34,22 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
   </p>
-  <p>Do zobaczenia!</p>
+  <p>Do zobaczenia!</p> -->
+
+  <div id="neela-row-64dea379640e2" class="vc_row wpb_row vc_row-fluid vc_custom_1643311795257 neela-row"><div class="container"><div class="wpb_column vc_column_container vc_col-sm-2"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div><div class="wpb_column vc_column_container vc_col-sm-8"><div class="vc_column-inner"><div class="wpb_wrapper">
+    <div class="wpb_text_column wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top bottom-to-top about-us-desc wpb_start_animation animated">
+      <div class="wpb_wrapper">
+        <h3 style="text-align: center;"><small>We are</small>Getting Married</h3>
+  <p>Today and always, beyond tomorrow, I need you beside me, always as my best friend, lover and forever soul mate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt porttitor venenatis. Vestibulum sit amet est nisl. Vestibulum iaculis finibus sem nec condimentum. Quisque nulla orci, aliquet sit amet sem eget, pellentesque euismod enim. Aenean quis nisl at est consequat elementum sed vel turpis. Phasellus dignissim sit amet orci vitae mattis. Phasellus a imperdiet ligula, efficitur dignissim ex. Mauris placerat aliquet sem commodo molestie.</p>
+  <p><img decoding="async" class="size-full wp-image-101 aligncenter" src="http://www.wiselythemes.com/wordpress/neela/wp-content/uploads/2021/12/signature-2.png" alt="" width="301" height="61"></p>
+  
+      </div>
+    </div>
+  </div></div></div><div class="wpb_column vc_column_container vc_col-sm-2"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div></div></div>
   <p class="pull-right">- Natalia i Marcin 🫶</p>
+  <div style="width: 100%; display: flex; justify-content: center;">
+    <div class="btn" (click)="this.popupService.open('modal-1')">Wpisz się do księgo gości</div>
+    </div>
   <br />
 
 <div style="background-color: #ffeed9; padding: 7px;">
@@ -101,7 +120,7 @@
   <h1 style="width: 100%; display: flex; justify-content: center;">A tall modal popup</h1>
   <p style="width: 100%; display: flex; justify-content: center;" >Close with the button below or by clicking the background.</p>
   <form  style="width: 100%" #f="ngForm"  enctype="multipart/form-data">
-    <textarea style="width: 100%" rows="10" cols="60" name="wishes" ngModel></textarea>
+    <textarea style="width: 100%" rows="10" cols="60" name="wishes" [(ngModel)]="wishes"></textarea>
 
     <div style="position: relative;   display: flex; 
     justify-content: center;
@@ -114,10 +133,10 @@
       </a>
     </div>
 
-
-
-    <div style="display: flex; flex-wrap: wrap;">
-      <photo-preview *ngFor='let preview of previews' [content]="preview" (delete)="deletePreview($event)"></photo-preview>
+    <div class="photo-grid">
+      <div class="photo-item" *ngFor="let preview of previews">
+        <photo-preview [content]="preview" (delete)="deletePreview($event)"></photo-preview>
+      </div>
     </div>
 
   </form>

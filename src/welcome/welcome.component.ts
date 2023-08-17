@@ -16,7 +16,7 @@ declare var $:any;
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
-  selectedFiles: FileList | undefined;
+  selectedFiles: File[] = [];
   wishes!: string;
   previews: Preview[] = [];
   MAX_PACKAGE_SIZE = 5_000_000;
@@ -39,12 +39,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   
 
   onFileChange(event:any): void {
-    this.selectedFiles = event.target.files;
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
+    var files = event.target.files;
+   files = [...files].filter((el: File) => el.size < this.MAX_PACKAGE_SIZE);
+    if (event.target.files && event.target.files[0]) {
+      const numberOfFiles = event.target.files.length;
       for (let i = 0; i < numberOfFiles; i++) {
-        if(this.selectedFiles[i].size > this.MAX_PACKAGE_SIZE){
-          this.toastr.warning(`Rozmiar zdjęcia ${this.selectedFiles[i].name} przekracza 5MB`, 'Upload nieudany'  , {timeOut: 2000, progressBar: true});
+        if(event.target.files[i].size > this.MAX_PACKAGE_SIZE){
+          this.toastr.warning(`Rozmiar zdjęcia ${event.target.files[i].name} przekracza 5MB`, 'Upload nieudany'  , {timeOut: 2000, progressBar: true});
           continue;
         }else{
           const reader = new FileReader();
@@ -52,11 +53,12 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
           reader.onload = (e: any) => {
             this.previews.push({content: e.target.result, id: uuid.v4()});
           };
-          reader.readAsDataURL(this.selectedFiles[i]);
+          reader.readAsDataURL(event.target.files[i]);
         }
 
       }
     }
+    this.selectedFiles = this.selectedFiles.concat(files);
   }
 
   async submitForm(event: any): Promise<void> {
@@ -76,7 +78,9 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
           }else{
             payloadSize += this.selectedFiles[i].size
             if(payloadSize >= this.MAX_PACKAGE_SIZE){
+              console.log(formData.get('photos'));
                 await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
+
                 payloadSize = 0;
                 formData = new FormData();
             }else{
@@ -84,8 +88,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
             }
           }
         }
-        if(formData != new FormData())
+        if(formData != new FormData()){
+          console.log(formData.get('photos'));
           await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
+
+        }
       }
     }
 

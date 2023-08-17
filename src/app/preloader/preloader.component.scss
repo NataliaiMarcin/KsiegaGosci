@@ -87,3 +87,9 @@
       stroke-dashoffset:3100
     }
   }
+
+.fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 400ms, opacity 400ms;
+  }
