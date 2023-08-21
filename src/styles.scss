@@ -5,3 +5,32 @@
   .imagerow{
     justify-content: center;
 }
+
+.close {
+  right: 10px;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+
+  position: absolute;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+
+  position: absolute;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

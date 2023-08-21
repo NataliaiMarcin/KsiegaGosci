@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoaderService } from '../Services/loader.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { LoaderService } from '../Services/loader.service';
 })
 export class PreloaderComponent {
 
+  @Input()
+  loading: boolean = false;
   constructor(public loader: LoaderService){}
 
 }

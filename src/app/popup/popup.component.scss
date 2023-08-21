@@ -30,7 +30,17 @@
     width: 50%;
     height: fit-content;
     min-height: 90vh;
+    background-color: #ffeed9;
 }
+
+
+
+input[type="text"], textarea {
+
+  background-color : #ffeed9; 
+
+}
+
   body.jw-modal-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
     overflow: hidden;
@@ -39,35 +49,9 @@
   /* Phone settings */
 @media only screen and (max-width: 768px) {
   .jw-modal-body {
-    width: 90%;
+    width: 100%;
+    border-radius: 0px;
+    min-height: 100vh;
   }
 }
 
-  .close {
-    right: 10px;
-    top: 10px;
-    width: 32px;
-    height: 32px;
-    opacity: 0.3;
-
-    position: absolute;
-  }
-  .close:hover {
-    opacity: 1;
-  }
-  .close:before, .close:after {
-
-    left: 15px;
-    content: ' ';
-    height: 33px;
-    width: 2px;
-    background-color: #333;
-
-    position: absolute;
-  }
-  .close:before {
-    transform: rotate(45deg);
-  }
-  .close:after {
-    transform: rotate(-45deg);
-  }

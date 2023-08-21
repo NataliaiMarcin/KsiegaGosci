@@ -39,7 +39,8 @@
   <div id="neela-row-64dea379640e2" class="vc_row wpb_row vc_row-fluid vc_custom_1643311795257 neela-row"><div class="container"><div class="wpb_column vc_column_container vc_col-sm-2"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div><div class="wpb_column vc_column_container vc_col-sm-8"><div class="vc_column-inner"><div class="wpb_wrapper">
     <div class="wpb_text_column wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top bottom-to-top about-us-desc wpb_start_animation animated">
       <div class="wpb_wrapper">
-        <h3 style="text-align: center;"><small>We are</small>Getting Married</h3>
+        <h3 style="text-align: center;" class="separator">
+          <small>We are</small>Getting Married</h3>
   <p>Today and always, beyond tomorrow, I need you beside me, always as my best friend, lover and forever soul mate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt porttitor venenatis. Vestibulum sit amet est nisl. Vestibulum iaculis finibus sem nec condimentum. Quisque nulla orci, aliquet sit amet sem eget, pellentesque euismod enim. Aenean quis nisl at est consequat elementum sed vel turpis. Phasellus dignissim sit amet orci vitae mattis. Phasellus a imperdiet ligula, efficitur dignissim ex. Mauris placerat aliquet sem commodo molestie.</p>
   <p><img decoding="async" class="size-full wp-image-101 aligncenter" src="http://www.wiselythemes.com/wordpress/neela/wp-content/uploads/2021/12/signature-2.png" alt="" width="301" height="61"></p>
   
@@ -120,24 +121,64 @@
   <h1 style="width: 100%; display: flex; justify-content: center;">A tall modal popup</h1>
   <p style="width: 100%; display: flex; justify-content: center;" >Close with the button below or by clicking the background.</p>
   <form  style="width: 100%" #f="ngForm"  enctype="multipart/form-data">
-    <textarea style="width: 100%" rows="10" cols="60" name="wishes" [(ngModel)]="wishes"></textarea>
-
     <div style="position: relative;   display: flex; 
     justify-content: center;
     align-items: center;
-    ">
+    flex-direction: column;    ">
+    <textarea style="width: 100%" rows="10" cols="60" name="wishes" [(ngModel)]="wishes"></textarea>
+
+
+      <div style="position: relative;   display: flex; 
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 10px;
+      width: 100%;
+      ">
+          <div class="photo-grid">
+            <div class="photo-item" *ngFor="let preview of previews">
+              <photo-preview [content]="preview" (delete)="deletePreview($event)"></photo-preview>
+            </div>
+          </div>
         <input #uploadFile type="file" name="photos" multiple (change)="onFileChange($event)" style="display: none;">
+        <div style="display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;">
       <a class="bt more-bt" (click)="this.eoeoeo(uploadFile)">
         <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
         <p>Wybierz zdjęcia</p>
       </a>
+
+
+      <div><div class="bt" style="border: 2px solid #503af6; height: 43px;
+        justify-content: center;
+        display: flex;">
+        <div class="upload-button__icon" style="display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-top: 10px;">
+            <svg class="upload-button__svg" viewBox="0 0 24 24">
+                <path d="M18.5,7.5c0.275,0,0.341-0.159,0.146-0.354l-6.292-6.292c-0.195-0.196-0.512-0.196-0.707-0.001 c0,0-0.001,0.001-0.001,0.001L5.354,7.147C5.154,7.342,5.225,7.501,5.5,7.501h3v10c0,0.552,0.448,1,1,1h5c0.552,0,1-0.448,1-1V7.5 H18.5z M23.5,18.5v4c0,0.552-0.448,1-1,1h-21c-0.552,0-1-0.448-1-1v-4"></path>
+            </svg>
+        </div>
+    
+        <div class="lines">
+Prześlij
+        </div>
+    </div>
     </div>
 
-    <div class="photo-grid">
-      <div class="photo-item" *ngFor="let preview of previews">
-        <photo-preview [content]="preview" (delete)="deletePreview($event)"></photo-preview>
-      </div>
+
+
+
+  </div>
     </div>
+
+
+  </div>
+  <app-preloader style="z-index: 50000;" [loading]="loading"></app-preloader>
 
   </form>
   <div type="button" (click)="submitForm($event)">Upload</div>

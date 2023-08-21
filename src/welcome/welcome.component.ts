@@ -19,7 +19,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   selectedFiles: File[] = [];
   wishes!: string;
   previews: Preview[] = [];
-  MAX_PACKAGE_SIZE = 5_000_000;
+  MAX_PACKAGE_SIZE = 4_900_000;
+  loading: boolean = false;
   @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 
   @ViewChild(ToastContainerDirective, { static: true })
@@ -39,6 +40,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   
 
   onFileChange(event:any): void {
+    this.loading = true;
     var files = event.target.files;
    files = [...files].filter((el: File) => el.size < this.MAX_PACKAGE_SIZE);
     if (event.target.files && event.target.files[0]) {
@@ -59,10 +61,12 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       }
     }
     this.selectedFiles = this.selectedFiles.concat(files);
+    this.loading = false;
   }
 
   async submitForm(event: any): Promise<void> {
     event.stopPropagation();
+    console.log(this.selectedFiles.length);
     let formData = new FormData();
     let payloadSize = 0;
     let createFolderResponse:any = await firstValueFrom(this.http.post('https://tasty-overshirt-jay.cyclic.app/api/createfolder', formData));
@@ -78,18 +82,19 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
           }else{
             payloadSize += this.selectedFiles[i].size
             if(payloadSize >= this.MAX_PACKAGE_SIZE){
-              console.log(formData.get('photos'));
+              console.log(formData.getAll('photos'));
                 await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
 
-                payloadSize = 0;
                 formData = new FormData();
+                formData.append('photos', this.selectedFiles[i]);
+                payloadSize = this.selectedFiles[i].size;
             }else{
               formData.append('photos', this.selectedFiles[i]);
             }
           }
         }
-        if(formData != new FormData()){
-          console.log(formData.get('photos'));
+        if(formData.get('photos')){
+          console.log(formData.getAll('photos'));
           await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
 
         }
@@ -106,8 +111,10 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.popupService.close();
   }
 
-  deletePreview(id: String){
+  deletePreview(id: string){
+    let index = this.previews.map(d => d.id).indexOf(id);
     this.previews = this.previews.filter((el: Preview) => el.id != id);
+    this.selectedFiles.splice(index, 1);
   }
 }
 

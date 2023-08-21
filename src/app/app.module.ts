@@ -13,10 +13,11 @@ import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 import { WelcomeModule } from 'src/welcome/welcome.module';
 import { PopupComponent } from './popup/popup.component';
 import { PhotoPreviewComponent } from './photo-preview/photo-preview.component';
+import { PreloaderModule } from './preloader/preloader.module';
 
 @NgModule({
   declarations: [
-    AppComponent, FooterComponent, PreloaderComponent
+    AppComponent, FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,8 @@ import { PhotoPreviewComponent } from './photo-preview/photo-preview.component';
     FormsModule,
     Angular2ImageGalleryModule,
     HammerModule,
-    WelcomeModule
+    WelcomeModule,
+    PreloaderModule
   ],
   providers: [HttpClient, provideAnimations(),    {
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true

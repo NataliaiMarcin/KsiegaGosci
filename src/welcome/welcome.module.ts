@@ -9,6 +9,8 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { PhotoPreviewComponent } from "src/app/photo-preview/photo-preview.component";
 import { ToastrModule, ToastContainerDirective  } from 'ngx-toastr';
+import { PreloaderComponent } from "src/app/preloader/preloader.component";
+import { PreloaderModule } from "src/app/preloader/preloader.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ToastrModule, ToastContainerDirective  } from 'ngx-toastr';
     Angular2ImageGalleryModule,
     HammerModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    PreloaderModule
   ],
   providers: [HttpClient, provideAnimations()],
   exports:[WelcomeComponent],
