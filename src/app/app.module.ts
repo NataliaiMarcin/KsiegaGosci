@@ -5,14 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { WelcomeComponent } from 'src/welcome/welcome.component';
 import { FooterComponent } from 'src/footer/footer.component';
 import { Angular2ImageGalleryModule } from 'angular2-image-gallery';
-import { PreloaderComponent } from './preloader/preloader.component';
 import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 import { WelcomeModule } from 'src/welcome/welcome.module';
-import { PopupComponent } from './popup/popup.component';
-import { PhotoPreviewComponent } from './photo-preview/photo-preview.component';
 import { PreloaderModule } from './preloader/preloader.module';
 
 @NgModule({

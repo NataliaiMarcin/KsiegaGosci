@@ -19,7 +19,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   selectedFiles: File[] = [];
   wishes!: string;
   previews: Preview[] = [];
-  MAX_PACKAGE_SIZE = 4_900_000;
+  MAX_PACKAGE_SIZE = 4_500_000;
   loading: boolean = false;
   @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 
@@ -41,31 +41,34 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   onFileChange(event:any): void {
     this.loading = true;
+    console.log(this.loading);
     var files = event.target.files;
-   files = [...files].filter((el: File) => el.size < this.MAX_PACKAGE_SIZE);
+   files = [...files].filter((el: File) => 1 == 1);
     if (event.target.files && event.target.files[0]) {
       const numberOfFiles = event.target.files.length;
       for (let i = 0; i < numberOfFiles; i++) {
-        if(event.target.files[i].size > this.MAX_PACKAGE_SIZE){
-          this.toastr.warning(`Rozmiar zdjęcia ${event.target.files[i].name} przekracza 5MB`, 'Upload nieudany'  , {timeOut: 2000, progressBar: true});
-          continue;
-        }else{
+        // if(event.target.files[i].size > this.MAX_PACKAGE_SIZE){
+        //   this.toastr.warning(`Rozmiar zdjęcia ${event.target.files[i].name} przekracza 5MB`, 'Upload nieudany'  , {timeOut: 2000, progressBar: true});
+        //   continue;
+        // }else{
           const reader = new FileReader();
 
           reader.onload = (e: any) => {
             this.previews.push({content: e.target.result, id: uuid.v4()});
           };
           reader.readAsDataURL(event.target.files[i]);
-        }
+        //}
 
       }
     }
     this.selectedFiles = this.selectedFiles.concat(files);
     this.loading = false;
+    console.log(this.loading);
   }
 
   async submitForm(event: any): Promise<void> {
     event.stopPropagation();
+    this.loading = true;
     console.log(this.selectedFiles.length);
     let formData = new FormData();
     let payloadSize = 0;
@@ -76,21 +79,25 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     if(createFolderResponse.Status == 'OK'){
       if(this.selectedFiles){
         for (let i = 0; i < this.selectedFiles.length; i++) {
-          if(payloadSize === 0){
-            formData.append('photos', this.selectedFiles[i]);
-            payloadSize = this.selectedFiles[i].size;
-          }else{
-            payloadSize += this.selectedFiles[i].size
-            if(payloadSize >= this.MAX_PACKAGE_SIZE){
-              console.log(formData.getAll('photos'));
-                await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
-
-                formData = new FormData();
-                formData.append('photos', this.selectedFiles[i]);
-                payloadSize = this.selectedFiles[i].size;
-            }else{
+          if(this.selectedFiles[i].size <this.MAX_PACKAGE_SIZE){
+            if(payloadSize === 0){
               formData.append('photos', this.selectedFiles[i]);
+              payloadSize = this.selectedFiles[i].size;
+            }else{
+              payloadSize += this.selectedFiles[i].size
+              if(payloadSize >= this.MAX_PACKAGE_SIZE){
+                console.log(formData.getAll('photos'));
+                  await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
+  
+                  formData = new FormData();
+                  formData.append('photos', this.selectedFiles[i]);
+                  payloadSize = this.selectedFiles[i].size;
+              }else{
+                formData.append('photos', this.selectedFiles[i]);
+              }
             }
+          }else{
+            await this.uploadFileChunked(this.selectedFiles[i], createFolderResponse.Message);
           }
         }
         if(formData.get('photos')){
@@ -100,7 +107,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         }
       }
     }
-
+    this.loading = false;
   }
 
   eoeoeo(object: any){
@@ -116,6 +123,45 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.previews = this.previews.filter((el: Preview) => el.id != id);
     this.selectedFiles.splice(index, 1);
   }
+
+  async uploadFileChunked(file: File, folderId: string) {
+    const chunkSize = 4 * 1024 * 1024; // 5 MB in bytes
+
+    const totalChunks = Math.ceil(file.size / chunkSize);
+    const chunks = [];
+
+    for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+      const start = chunkIndex * chunkSize;
+      const end = Math.min(start + chunkSize, file.size);
+      const chunk = file.slice(start, end);
+      chunks.push(chunk);
+    }
+
+    const promises = chunks.map((chunk, index) => {
+      const formData = new FormData();
+      formData.append('file', chunk);
+      formData.append('index', index.toString());
+      formData.append('folderId', folderId);
+      formData.append('totalChunks', totalChunks.toString());
+      formData.append('fileName', file.name);
+      formData.append('mimeType', file.type);
+
+      return this.http.post('https://tasty-overshirt-jay.cyclic.app/api/uploadchunks', formData).toPromise();
+    });
+
+    try {
+      await Promise.all(promises);
+      console.log('File uploaded successfully.');
+    } catch (error) {
+      console.error('Upload error:', error);
+    }
+  }
+
+
+
+
+
+
 }
 
 export interface Preview{

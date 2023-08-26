@@ -11,6 +11,7 @@ import { PhotoPreviewComponent } from "src/app/photo-preview/photo-preview.compo
 import { ToastrModule, ToastContainerDirective  } from 'ngx-toastr';
 import { PreloaderComponent } from "src/app/preloader/preloader.component";
 import { PreloaderModule } from "src/app/preloader/preloader.module";
+import { LoadingHearthModule } from "src/app/loading-hearth/loading-hearth.module";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PreloaderModule } from "src/app/preloader/preloader.module";
     HammerModule,
     CommonModule,
     FormsModule,
-    PreloaderModule
+    PreloaderModule,
+    LoadingHearthModule
   ],
   providers: [HttpClient, provideAnimations()],
   exports:[WelcomeComponent],
