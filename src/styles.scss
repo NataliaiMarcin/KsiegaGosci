@@ -12,7 +12,7 @@
   width: 32px;
   height: 32px;
   opacity: 0.3;
-
+  z-index: 10001;
   position: absolute;
 }
 .close:hover {
@@ -33,4 +33,10 @@
 }
 .close:after {
   transform: rotate(-45deg);
+}
+
+
+body.jw-modal-open{
+  height: 100vh;
+  overflow-y: hidden;
 }

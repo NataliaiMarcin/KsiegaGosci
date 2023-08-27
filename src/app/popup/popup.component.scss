@@ -15,7 +15,6 @@
 
     /* semi-transparent black background exposed by padding */
     background-color: rgba(0, 0, 0, .75);
-    padding: 40px;
 
     /* enables scrolling for tall modals */
     overflow: auto;
@@ -24,7 +23,7 @@
 }
 
 .jw-modal-body {
-    padding: 20px;
+
     background: #fff;
     border-radius: 25px;
     position: relative;

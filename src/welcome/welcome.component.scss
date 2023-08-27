@@ -149,7 +149,9 @@ section {
     background-image: url(../assets/images/background-image-phone_flipped.jpeg);
     background-position: 50% 0%;
   }
-
+  .picture-preview-margin-bottom{
+    margin-bottom: 10px !important;
+  }
 
   table td{
     font-size: smaller !important;
@@ -625,4 +627,8 @@ font-size: 14px;
   justify-content: center;
   flex-direction: column;
   font-size: 14px;
+}
+
+.picture-preview-margin-bottom{
+  margin-bottom: 80px;
 }

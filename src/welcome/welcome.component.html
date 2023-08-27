@@ -141,9 +141,8 @@
   [onClick]="this.close"
   style="width: 50%"
 >
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center">
-    <div style="width: 100%; height: calc(100% - 50px);">
-    <div aria-live="polite" toastContainer style="top: 10px !important"></div>
+  <div style="display: flex; justify-content: flex-start; flex-direction: column; align-items: center; height: calc(100vh - 70px);">
+    
     <h1 style="width: 100%; display: flex; justify-content: center">
       A tall modal popup
     </h1>
@@ -158,8 +157,11 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          padding-left: 10px;
+          padding-right: 10px;
         "
       >
+      
         <textarea
           style="width: 100%"
           rows="10"
@@ -169,7 +171,7 @@
         ></textarea>
       </div>
     </form>
-
+    <div style="overflow-y: auto;" class="picture-preview-margin-bottom">
         <div
           style="
             position: relative;
@@ -179,7 +181,6 @@
             flex-direction: column;
             padding-top: 10px;
             width: 100%;
-            padding-bottom: 40px;
           "
         >
         <div *ngIf="loading" style="position: relative; min-height: 200px;">
@@ -206,60 +207,61 @@
           />        
         </div>
       </div>
-          <div
-            style="
-              display: flex;
-              justify-content: space-evenly;
-              align-items: center;
-              flex-direction: row;
-              width: 100%;
-              height: 50px;
-              position: absolute;
-              bottom: 30px;
-            "
-          >
-            <a class="bt more-bt" (click)="this.eoeoeo(uploadFile)">
-              <span class="fl"></span><span class="sfl"></span
-              ><span class="cross"></span><i></i>
-              <p>Wybierz zdjęcia</p>
-            </a>
 
-            <div                   type="button"
-            (click)="submitForm($event)">
-              <div
-                class="bt"
-                style="
-                  border: 2px solid #554f48;
-                  height: 43px;
-                  justify-content: center;
-                  display: flex;
-                "
-              >
-                <div
-                  class="upload-button__icon"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-content: center;
-                    margin-top: 10px;
-                  "
-
-                >
-                  <svg class="upload-button__svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.5,7.5c0.275,0,0.341-0.159,0.146-0.354l-6.292-6.292c-0.195-0.196-0.512-0.196-0.707-0.001 c0,0-0.001,0.001-0.001,0.001L5.354,7.147C5.154,7.342,5.225,7.501,5.5,7.501h3v10c0,0.552,0.448,1,1,1h5c0.552,0,1-0.448,1-1V7.5 H18.5z M23.5,18.5v4c0,0.552-0.448,1-1,1h-21c-0.552,0-1-0.448-1-1v-4"
-                    ></path>
-                  </svg>
-                </div>
-
-                <div class="lines">Prześlij</div>
-              </div>
-            </div>
-          </div>
 
 
 
   </div>
+  <div
+  style="
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 10px;
+  "
+>
+  <a class="bt more-bt" (click)="this.eoeoeo(uploadFile)">
+    <span class="fl"></span><span class="sfl"></span
+    ><span class="cross"></span><i></i>
+    <p>Wybierz zdjęcia</p>
+  </a>
+
+  <div                   type="button"
+  (click)="submitForm($event)">
+    <div
+      class="bt"
+      style="
+        border: 2px solid #554f48;
+        height: 43px;
+        justify-content: center;
+        display: flex;
+      "
+    >
+      <div
+        class="upload-button__icon"
+        style="
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          margin-top: 10px;
+        "
+
+      >
+        <svg class="upload-button__svg" viewBox="0 0 24 24">
+          <path
+            d="M18.5,7.5c0.275,0,0.341-0.159,0.146-0.354l-6.292-6.292c-0.195-0.196-0.512-0.196-0.707-0.001 c0,0-0.001,0.001-0.001,0.001L5.354,7.147C5.154,7.342,5.225,7.501,5.5,7.501h3v10c0,0.552,0.448,1,1,1h5c0.552,0,1-0.448,1-1V7.5 H18.5z M23.5,18.5v4c0,0.552-0.448,1-1,1h-21c-0.552,0-1-0.448-1-1v-4"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="lines">Prześlij</div>
+    </div>
+  </div>
+</div>
 </app-popup>
 <!-- <app-popup id="modal-1" class="app-popup">
   <h1>A custom modal popup</h1>
