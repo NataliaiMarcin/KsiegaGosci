@@ -40,7 +40,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   
 
   onFileChange(event:any): void {
-    this.loading = true;
     console.log(this.loading);
     var files = event.target.files;
    files = [...files].filter((el: File) => 1 == 1);
@@ -62,8 +61,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       }
     }
     this.selectedFiles = this.selectedFiles.concat(files);
-    this.loading = false;
-    console.log(this.loading);
+
   }
 
   async submitForm(event: any): Promise<void> {

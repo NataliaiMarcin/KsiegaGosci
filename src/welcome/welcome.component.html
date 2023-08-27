@@ -141,7 +141,7 @@
   [onClick]="this.close"
   style="width: 50%"
 >
-  <div style="display: flex; justify-content: flex-start; flex-direction: column; align-items: center; height: calc(100vh - 70px);">
+  <div style="display: flex; justify-content: flex-start; flex-direction: column; align-items: center; max-height: calc(100vh - 70px);">
     
     <h1 style="width: 100%; display: flex; justify-content: center">
       A tall modal popup
@@ -183,12 +183,6 @@
             width: 100%;
           "
         >
-        <div *ngIf="loading" style="position: relative; min-height: 200px;">
-          <app-loading-hearth
-          title="
-          Ładowanie"
-        ></app-loading-hearth>
-      </div>
           <div *ngIf="!loading" class="photo-grid">
             <div class="photo-item" *ngFor="let preview of previews">
               <photo-preview
@@ -207,7 +201,12 @@
           />        
         </div>
       </div>
-
+      <div *ngIf="loading" style="position: relative; min-height: 200px;">
+        <app-loading-hearth
+        title="
+        Ładowanie"
+      ></app-loading-hearth>
+    </div>
 
 
 
