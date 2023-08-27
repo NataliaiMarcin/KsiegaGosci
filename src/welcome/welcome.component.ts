@@ -71,10 +71,9 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.loading = true;
     console.log(this.selectedFiles.length);
     let formData = new FormData();
-    let payloadSize = 0;
-    let createFolderResponse:any = await firstValueFrom(this.http.post('https://tasty-overshirt-jay.cyclic.app/api/createfolder', formData));
     formData.append('wishes', this.wishes);
-    payloadSize += new Blob([this.wishes]).size;
+    let payloadSize = 0;
+    let createFolderResponse:any = await firstValueFrom(this.http.post('https://wandering-magenta-sheet.glitch.me/api/uploadfile', formData));
 
     if(createFolderResponse.Status == 'OK'){
       if(this.selectedFiles){
@@ -87,7 +86,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
               payloadSize += this.selectedFiles[i].size
               if(payloadSize >= this.MAX_PACKAGE_SIZE){
                 console.log(formData.getAll('photos'));
-                  await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
+                  await firstValueFrom(this.http.post(`https://wandering-magenta-sheet.glitch.me/api/upload/${createFolderResponse.Message}`, formData));
   
                   formData = new FormData();
                   formData.append('photos', this.selectedFiles[i]);
@@ -102,7 +101,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         }
         if(formData.get('photos')){
           console.log(formData.getAll('photos'));
-          await firstValueFrom(this.http.post(`https://tasty-overshirt-jay.cyclic.app/api/upload/${createFolderResponse.Message}`, formData));
+          await firstValueFrom(this.http.post(`https://wandering-magenta-sheet.glitch.me/api/upload/${createFolderResponse.Message}`, formData));
 
         }
       }
@@ -146,7 +145,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       formData.append('fileName', file.name);
       formData.append('mimeType', file.type);
 
-      return this.http.post('https://tasty-overshirt-jay.cyclic.app/api/uploadchunks', formData).toPromise();
+      return this.http.post('https://wandering-magenta-sheet.glitch.me/api/uploadchunks', formData).toPromise();
     });
 
     try {
@@ -156,12 +155,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       console.error('Upload error:', error);
     }
   }
-
-
-
-
-
-
 }
 
 export interface Preview{

@@ -19,6 +19,7 @@
 
     /* enables scrolling for tall modals */
     overflow: auto;
+    align-items: center;
     
 }
 
@@ -29,7 +30,7 @@
     position: relative;
     width: 50%;
     height: fit-content;
-    min-height: 90vh;
+    min-height: 50vh;
     background-color: #ffeed9;
 }
 
@@ -52,6 +53,9 @@ input[type="text"], textarea {
     width: 100%;
     border-radius: 0px;
     min-height: 100vh;
+  }
+  .jw-modal {
+    padding: 0px !important;
   }
 }
 
