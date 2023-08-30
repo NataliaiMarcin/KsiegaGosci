@@ -21,6 +21,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   previews: Preview[] = [];
   MAX_PACKAGE_SIZE = 4_500_000;
   loading: boolean = false;
+  upload_successfull: boolean = true;
+  upload_failed: boolean = false;
   @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 
   @ViewChild(ToastContainerDirective, { static: true })
@@ -46,17 +48,17 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     if (event.target.files && event.target.files[0]) {
       const numberOfFiles = event.target.files.length;
       for (let i = 0; i < numberOfFiles; i++) {
-        // if(event.target.files[i].size > this.MAX_PACKAGE_SIZE){
-        //   this.toastr.warning(`Rozmiar zdjęcia ${event.target.files[i].name} przekracza 5MB`, 'Upload nieudany'  , {timeOut: 2000, progressBar: true});
-        //   continue;
-        // }else{
+        if(!event.target.files[i].type.startsWith('image/')){
+          this.toastr.warning(`Przesłany plik ${event.target.files[i].name} nie jest zdjęciem`, 'Upload nieudany'  , {timeOut: 4000, progressBar: true});
+          continue;
+        }else{
           const reader = new FileReader();
 
           reader.onload = (e: any) => {
             this.previews.push({content: e.target.result, id: uuid.v4()});
           };
           reader.readAsDataURL(event.target.files[i]);
-        //}
+        }
 
       }
     }
@@ -105,18 +107,27 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       }
     }
     this.loading = false;
+    this.upload_successfull = true;
   }
 
   eoeoeo(object: any){
     this.uploadFile?.nativeElement.click();
   }
 
-  close(){
+  close(event: any){
     this.popupService.close();
+    this.selectedFiles = [];
+    this.previews = [];
+    this.wishes = "";
+    this.upload_successfull  = this.upload_failed = false;
+
   }
+
+
 
   deletePreview(id: string){
     let index = this.previews.map(d => d.id).indexOf(id);
+    console.log(this.previews);
     this.previews = this.previews.filter((el: Preview) => el.id != id);
     this.selectedFiles.splice(index, 1);
   }

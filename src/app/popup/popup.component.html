@@ -1,7 +1,7 @@
 <div class="jw-modal">
 
-    <div class="jw-modal-body">
-        <div (click)="onClick()" class="close"></div>
+    <div [ngClass]="{'center-content': center, 'jw-modal-body': true}">
+        <div (click)="close()" class="close"></div>
         <ng-content></ng-content>
     </div>
 </div>

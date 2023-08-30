@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { PopupService } from '../Services/popup.service';
 
 @Component({
@@ -10,7 +10,9 @@ export class PopupComponent implements OnInit, OnDestroy {
   @Input() id?: string;
   isOpen = false;
   private element: any;
-  @Input() onClick: any;
+  @Input() center: boolean = false;
+  @Output()
+  onClose: EventEmitter<any> = new EventEmitter();
 
   constructor(private popupService: PopupService, private el: ElementRef) {
       this.element = el.nativeElement;
@@ -49,5 +51,6 @@ export class PopupComponent implements OnInit, OnDestroy {
       this.element.style.display = 'none';
       document.body.classList.remove('jw-modal-open');
       this.isOpen = false;
+      this.onClose.emit(true);
   }
 }

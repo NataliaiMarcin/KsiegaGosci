@@ -21,23 +21,7 @@
   </div>
 </div>
 
-<!-- <div div class="welcome-section parallax-background">
-  <h2 style='font-family: "scriptina", Arial, Helvetica, sans-serif !important; font-size: 7vw; color: white;'>Witajcie!</h2>
-  </div>
-  <p>
-    👋 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-    ut labore et dolore magna aliqua. 🤷‍♂️🤷‍♀️ ... quis nostrud exercitation ullamco! 🧠
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-    laboris nisi ut aliquip ex ea commodo consequat.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-  </p>
-  <p>Do zobaczenia!</p> -->
+
 
 <div style="width: 100%; display: flex; justify-content: center; flex-direction: column;">
 
@@ -45,21 +29,37 @@
 
     <div style="width: 100%; display: flex; justify-content: center">
       <div class="vc_column-inner">
-              <h3 style="text-align: center" class="separator">
-                We are Getting Married
+              <h3 style=" position: relative;
+            text-align: center; font-family: Playfair Display,serif;
+              margin-bottom: 40px;
+              font-weight: 700;" class="separator">
+                <p style="text-align: center;  color: #73777b;
+                font-family: 'scriptina', Arial, Helvetica, sans-serif !important;
+                font-weight: 700;
+                font-size: 80px;
+                margin-top: -50px;
+                margin-bottom: -30px;">Kochani!</p>
               </h3>
-              <p style="text-align: center">
-                Today and always, beyond tomorrow, I need you beside me, always
-                as my best friend, lover and forever soul mate. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Fusce tincidunt
-                porttitor venenatis. Vestibulum sit amet est nisl. Vestibulum
-                iaculis finibus sem nec condimentum. Quisque nulla orci, aliquet
-                sit amet sem eget, pellentesque euismod enim. Aenean quis nisl
-                at est consequat elementum sed vel turpis. Phasellus dignissim
-                sit amet orci vitae mattis. Phasellus a imperdiet ligula,
-                efficitur dignissim ex. Mauris placerat aliquet sem commodo
-                molestie.
-              </p>
+              <p style="text-align: center;  color: #73777b;
+              line-height: 1.6;
+              font-family: Poppins,sans-serif;
+              font-size: 15px;">
+                Dziękujemy, że jesteście dziś z nami. Że w tym pięknym i ważnym dla nas dniu zdecydowaliście się pojawić u naszego boku.  To właśnie Wy sprawiacie, że ten dzień jest jeszcze bardziej  wyjątkowy. Dziękujemy za wszystkie życzenia, ciepłe słowa i prezenty jakie od Was otrzymaliśmy. Cieszymy się,  że możemy naszą wspólną nową drogę życia rozpocząć właśnie z Wami.
+                Zachęcamy, aby wpisać się do księgi gości , wypełnić ankietę weselną i zrobić z nami zdjęcie ;-)
+                <p style="text-align: center;  color: #73777b;
+
+                font-family: Poppins,sans-serif;
+                font-size: 15px; margin-top:0px; margin-bottom: 10px;">Zostawcie też przepis na zgodne i udane małżeństwo ;-)</p>
+                <p style="text-align: center;  color: #73777b;
+
+                font-family: Poppins,sans-serif;
+                font-size: 15px; margin:10px;">Życzymy wam wspaniałej zabawy do białego rana :-)</p>
+                <p style="text-align: right;  color: #73777b;
+                line-height: 1.6;
+                font-family: Poppins,sans-serif;
+                font-size: 15px;
+                width: 90%;">Natalia i Marcin</p>
+
     </div>
             </div>
 
@@ -138,9 +138,22 @@
 <app-popup
   id="modal-1"
   class="app-popup"
-  [onClick]="this.close"
+  (onClose)="close($event)"
   style="width: 50%"
+  [center]="upload_successfull || upload_failed"
 >
+<div *ngIf="upload_successfull || upload_failed" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+  <p style="text-align: center;  color: #73777b;
+  font-family: GreatVibes,sans-serif !important;
+  font-weight: 700;
+  font-size: 50px;">Dziękujemy!</p>
+  <div style="width: 100%; display: flex; justify-content: center">
+    <div class="btn" (click)="close(null)">
+      Powrót
+    </div>
+  </div>
+</div>
+<div *ngIf="!upload_successfull && !upload_failed">
   <div style="display: flex; justify-content: flex-start; flex-direction: column; align-items: center; max-height: calc(100vh - 70px);">
     
     <h1 style="width: 100%; display: flex; justify-content: center">
@@ -204,7 +217,7 @@
       <div *ngIf="loading" style="position: relative; min-height: 200px;">
         <app-loading-hearth
         title="
-        Ładowanie"
+        Przesyłanie"
       ></app-loading-hearth>
     </div>
 
@@ -261,8 +274,5 @@
     </div>
   </div>
 </div>
+</div>
 </app-popup>
-<!-- <app-popup id="modal-1" class="app-popup">
-  <h1>A custom modal popup</h1>
-  <button (click)="this.popupService.close();">Close</button>
-</app-popup> -->
