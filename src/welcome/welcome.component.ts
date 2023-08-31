@@ -21,7 +21,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   previews: Preview[] = [];
   MAX_PACKAGE_SIZE = 4_500_000;
   loading: boolean = false;
-  upload_successfull: boolean = true;
+  upload_successfull: boolean = false;
   upload_failed: boolean = false;
   @ViewChild('uploadFile') uploadFile: ElementRef | undefined;
 

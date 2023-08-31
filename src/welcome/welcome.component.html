@@ -44,8 +44,8 @@
               line-height: 1.6;
               font-family: Poppins,sans-serif;
               font-size: 15px;">
-                Dziękujemy, że jesteście dziś z nami. Że w tym pięknym i ważnym dla nas dniu zdecydowaliście się pojawić u naszego boku.  To właśnie Wy sprawiacie, że ten dzień jest jeszcze bardziej  wyjątkowy. Dziękujemy za wszystkie życzenia, ciepłe słowa i prezenty jakie od Was otrzymaliśmy. Cieszymy się,  że możemy naszą wspólną nową drogę życia rozpocząć właśnie z Wami.
-                Zachęcamy, aby wpisać się do księgi gości , wypełnić ankietę weselną i zrobić z nami zdjęcie ;-)
+                Dziękujemy, że jesteście dziś z nami. Że w tym pięknym i ważnym dla nas dniu zdecydowaliście się pojawić u naszego boku. To właśnie Wy sprawiacie, że ten dzień jest jeszcze bardziej  wyjątkowy. Dziękujemy za wszystkie życzenia, ciepłe słowa i prezenty jakie od Was otrzymaliśmy. Cieszymy się, że naszą wspólną drogę życia możemy rozpocząć razem z Wami.
+                Zachęcamy, aby wpisać się do księgi gości, wypełnić ankietę weselną i zrobić z nami zdjęcie ;-)
                 <p style="text-align: center;  color: #73777b;
 
                 font-family: Poppins,sans-serif;
@@ -92,20 +92,28 @@
       <th>Wydarzenie</th>
     </tr>
     <tr>
-      <td>18:00 - 18:30</td>
+      <td>18:00</td>
       <td>Ślub</td>
     </tr>
     <tr>
-      <td>18:30 - 18:45</td>
-      <td>Pierwszy taniec</td>
+      <td>18:30</td>
+      <td>Ciepłe dania</td>
     </tr>
     <tr>
-      <td>19:30 - 20:00</td>
-      <td>Flaki</td>
+      <td>20:30</td>
+      <td>Tort</td>
     </tr>
     <tr>
-      <td>20:00 - 06:00</td>
-      <td>Dobra zabawa</td>
+      <td>21:30</td>
+      <td>Grill</td>
+    </tr>
+    <tr>
+      <td>00:00</td>
+      <td>Tatar</td>
+    </tr>
+    <tr>
+      <td>02:00</td>
+      <td>Ciepłe danie</td>
     </tr>
   </table>
 </div>
@@ -157,11 +165,11 @@
 <div *ngIf="!upload_successfull && !upload_failed">
   <div style="display: flex; justify-content: flex-start; flex-direction: column; align-items: center; max-height: calc(100vh - 70px);">
     
-    <h1 style="width: 100%; display: flex; justify-content: center">
-      A tall modal popup
+    <h1 style="width: 100%; display: flex; justify-content: center; font-size: large;">
+      Drodzy Goście
     </h1>
-    <p style="width: 100%; display: flex; justify-content: center">
-      Close with the button below or by clicking the background.
+    <p style="width: 100%; display: flex; justify-content: center; align-items: center; text-align: center; font-size: small;">
+      Chcielibyśmy zachować jak najwięcej wspomnień, dlatego będzie nam bardzo miło jeśli zechcecie wpisać się do naszej wirtualnej księgi. Chętnie zobaczymy jak bawiliście się razem z nami, koniecznie wrzućcie tutaj swoje zdjęcia. 
     </p>
     <form style="width: 100%" #f="ngForm" enctype="multipart/form-data">
       <div
@@ -178,7 +186,7 @@
       
         <textarea
           style="width: 100%"
-          rows="10"
+          rows="7"
           cols="60"
           name="wishes"
           [(ngModel)]="wishes"
