@@ -162,7 +162,10 @@ section {
   }
   .picture-preview-margin-bottom{
     margin-bottom: 10px !important;
+    margin-top: 5px;
   }
+
+
 
   table td{
     font-size: smaller !important;
@@ -496,7 +499,7 @@ font-size: 14px;
 
 .photo-item {
   flex: 1;
-  margin: 8px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: center;
   align-items: center;

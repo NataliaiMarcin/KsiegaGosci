@@ -20,6 +20,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   wishes!: string;
   previews: Preview[] = [];
   MAX_PACKAGE_SIZE = 4_500_000;
+  Y: number = 0;
   loading: boolean = false;
   upload_successfull: boolean = false;
   upload_failed: boolean = false;
@@ -44,7 +45,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   onFileChange(event:any): void {
     console.log(this.loading);
     var files = event.target.files;
-   files = [...files].filter((el: File) => 1 == 1);
+   files = [...files].filter((el: File) => el.type.startsWith('image/'));
     if (event.target.files && event.target.files[0]) {
       const numberOfFiles = event.target.files.length;
       for (let i = 0; i < numberOfFiles; i++) {
@@ -64,6 +65,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }
     this.selectedFiles = this.selectedFiles.concat(files);
 
+  }
+
+  open(){
+    this.lockScroll();
+    this.popupService.open('modal-1');
   }
 
   async submitForm(event: any): Promise<void> {
@@ -120,6 +126,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.previews = [];
     this.wishes = "";
     this.upload_successfull  = this.upload_failed = false;
+    this.unlockScroll();
 
   }
 
@@ -131,6 +138,23 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.previews = this.previews.filter((el: Preview) => el.id != id);
     this.selectedFiles.splice(index, 1);
   }
+
+   unlockScroll () {
+    document.body.style.overflow = '';
+   // document.body.style.top = '';
+   // document.body.style.left = '';
+   // document.body.style.right = '';
+    //window.scrollTo(0, this.Y * -1);
+};
+
+ lockScroll () {
+  //  this.Y = window.scrollY;
+    document.body.style.overflow = 'hidden';
+   // document.body.style.top = `-${window.scrollY}px`;
+   // document.body.style.left = '0';
+   // document.body.style.right = '0';
+   // console.log(window.scrollY);
+};
 
   async uploadFileChunked(file: File, folderId: string) {
     const chunkSize = 4 * 1024 * 1024; // 5 MB in bytes
